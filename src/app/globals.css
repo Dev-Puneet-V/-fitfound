@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --brand-pink: #ff2d55;
+    --meesho-gradient: linear-gradient(135deg, #f43397 0%, #7b1fa2 100%);
+    --flipkart-gradient: linear-gradient(135deg, #2874f0 0%, #0c4cb8 100%);
+    --myntra-gradient: linear-gradient(135deg, #ff3f6c 0%, #ff527b 100%);
+    --amazon-gradient: linear-gradient(135deg, #ff9900 0%, #e68a00 100%);
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #111111;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .font-editorial {
+    font-family: "Didot", "Bodoni MT", "Cinzel", Georgia, "Times New Roman", serif;
+    letter-spacing: -0.02em;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom Micro Animations */
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: subtle-float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.5s infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite ease-in-out;
+}
+
+/* Hide scrollbar for clean horizontal swipeable category chips */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Glassmorphism helpers */
+.glass-nav {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
 }
